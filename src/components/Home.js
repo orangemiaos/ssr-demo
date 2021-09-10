@@ -7,7 +7,7 @@ const Home = () => {
 
   return (
     <div>
-      <span>hello react!</span>
+      <span>hello react! 路由</span>
       <button onClick={handleClick}>点击</button>
     </div>
   );

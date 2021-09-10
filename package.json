@@ -2,11 +2,11 @@
   "name": "ssr_demo",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.server.js",
-    "start": "node ./dist/bundle.js"
+    "dev:build": "webpack --config webpack.server.js --watch",
+    "dev:start": "nodemon --watch dist dist/bundle.js",
+    "dev": "npm-run-all --parallel dev:build dev:start"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +22,7 @@
     "@babel/preset-react": "^7.14.5",
     "babel-loader": "^8.2.2",
     "nodemon": "^2.0.12",
+    "npm-run-all": "^4.1.5",
     "webpack": "^5.52.0",
     "webpack-cli": "^4.8.0"
   }

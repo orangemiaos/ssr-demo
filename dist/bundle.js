@@ -42,14 +42,14 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
+/***/ "./src/server/index.js":
+/*!*****************************!*\
+  !*** ./src/server/index.js ***!
+  \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"./node_modules/express/index.js\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Home */ \"./src/components/Home.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom/server */ \"./node_modules/react-dom/server.js\");\n\n\n\n\nvar content = react_dom_server__WEBPACK_IMPORTED_MODULE_3__.renderToString( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_components_Home__WEBPACK_IMPORTED_MODULE_1__[\"default\"], null));\nvar app = express__WEBPACK_IMPORTED_MODULE_0___default()();\nvar port = 3000;\napp.get(\"/\", function (req, res) {\n  res.send(content);\n});\napp.listen(port, function () {\n  console.log(\"Example app listening at http://localhost:\".concat(port));\n});\n\n//# sourceURL=webpack://ssr_demo/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"./node_modules/express/index.js\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Home */ \"./src/components/Home.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom/server */ \"./node_modules/react-dom/server.js\");\n\n\n\n\nvar content = react_dom_server__WEBPACK_IMPORTED_MODULE_3__.renderToString( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_components_Home__WEBPACK_IMPORTED_MODULE_1__[\"default\"], null));\nvar app = express__WEBPACK_IMPORTED_MODULE_0___default()();\nvar port = 3000; // 将静态文件存储在public文件夹上，每当有静态资源的请求时，去public文件夹中找\n\napp.use(express__WEBPACK_IMPORTED_MODULE_0___default()[\"static\"](\"public\"));\napp.get(\"/\", function (req, res) {\n  res.send(\"\\n  <html>\\n    <body>\\n    <div id='root'>\".concat(content, \"</div>\\n    <script src='/index.js'></script>\\n    </body>  \\n  <html>\\n  \"));\n});\napp.listen(port, function () {\n  console.log(\"Example app listening at http://localhost:\".concat(port));\n});\n\n//# sourceURL=webpack://ssr_demo/./src/server/index.js?");
 
 /***/ }),
 
@@ -1471,7 +1471,7 @@ eval("module.exports = JSON.parse('{\"100\":\"Continue\",\"101\":\"Switching Pro
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/server/index.js");
 /******/ 	
 /******/ })()
 ;

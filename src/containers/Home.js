@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Fragment } from "react";
+import Header from "../components/Header";
 
 const Home = () => {
   function handleClick() {
@@ -6,10 +7,11 @@ const Home = () => {
   }
 
   return (
-    <div>
+    <Fragment>
+      <Header />
       <span>hello react! 路由</span>
       <button onClick={handleClick}>点击</button>
-    </div>
+    </Fragment>
   );
 };
 

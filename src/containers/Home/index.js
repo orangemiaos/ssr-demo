@@ -1,26 +1,37 @@
-import React, { Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import Header from "../../components/Header";
+import { getHomeList } from "./store/actions";
 
-const Home = (props) => {
-  function handleClick() {
-    console.log(props);
+class Home extends Component {
+  // 服务端渲染是不执行，所以服务端渲染时，list为undefined
+  componentDidMount() {
+    this.props.getHomeList();
   }
 
-  return (
-    <Fragment>
-      <Header />
-      <span>hello react! ，{props.name}</span>
-      <button onClick={handleClick}>点击增加数字</button>
-    </Fragment>
-  );
-};
+  render() {
+    const { name, list } = this.props;
+    return (
+      <Fragment>
+        <Header />
+        <span>hello react! ，{name}</span>
+        <ul>
+          {list && list.map((item) => <li key={item.id}>{item.name}</li>)}
+        </ul>
+      </Fragment>
+    );
+  }
+}
 
-const mapStateToProps = (state) => {
-  console.log("state");
-  return {
-    name: state.home.name,
-  };
-};
+const mapStateToProps = (state) => ({
+  name: state.home.name,
+  list: state.home.list,
+});
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = (dispatch) => ({
+  getHomeList: () => {
+    dispatch(getHomeList);
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

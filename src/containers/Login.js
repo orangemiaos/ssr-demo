@@ -5,7 +5,7 @@ const Login = () => {
   return (
     <Fragment>
       <Header />
-      <div>Login</div>;
+      <div>Login</div>
     </Fragment>
   );
 };

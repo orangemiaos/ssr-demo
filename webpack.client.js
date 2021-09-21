@@ -9,6 +9,7 @@ const clientConfig = {
     path: path.resolve(__dirname, "public"),
     filename: "index.js",
   },
+  devtool: "source-map",
 };
 
 module.exports = merge(baseConfig, clientConfig);

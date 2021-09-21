@@ -1,21 +1,38 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
-import { StaticRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  StaticRouter as Router,
+  Switch,
+  Route,
+  matchPath,
+} from "react-router-dom";
 import { Provider } from "react-redux";
 import getStore from "../redux/store";
-import Routes from "../Routes";
+import routes from "../Routes";
 
 export const render = (req) => {
+  const promises = [];
+  routes.some((route) => {
+    const match = matchPath(req.path, route);
+    if (match) promises.push(route);
+    return match;
+  });
+  console.log("promises", promises);
+
+  // Promise.all(promises).then((data) => {
+  //   // do something w/ the data so the client
+  //   // can access it then render the app
+  // });
+
+  const store = getStore();
   // server端不同于浏览器，无法获取到url的变化，只能通过传入url的方式获取url
   const content = ReactDOMServer.renderToString(
-    <Provider store={getStore()}>
+    <Provider store={store}>
       <Router location={req.url}>
         <Switch>
-          {Routes.map((item) => (
-            <Route key={item.key} exact={item.exact} path={item.path}>
-              {item.component}
-            </Route>
-          ))}
+          {routes.map((item) => {
+            return <Route {...item} />;
+          })}
         </Switch>
       </Router>
     </Provider>

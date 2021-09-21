@@ -23,6 +23,10 @@ class Home extends Component {
   }
 }
 
+Home.loadData = () => {
+  console.log("get some data");
+};
+
 const mapStateToProps = (state) => ({
   name: state.home.name,
   list: state.home.list,

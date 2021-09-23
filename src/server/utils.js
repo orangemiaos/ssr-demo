@@ -4,35 +4,34 @@ import {
   StaticRouter as Router,
   Switch,
   Route,
-  matchPath,
+  // matchPath,
 } from "react-router-dom";
+// react-router-dom 中的 matchPath，只能匹配一级路由，路由内再次嵌套一个route，则匹配不出来，需要使用
+import { matchRoutes } from "react-router-config";
+
 import { Provider } from "react-redux";
 import getStore from "../redux/store";
-import routes from "../Routes";
+import { routes } from "../Routes";
 
 export const render = (req) => {
-  const promises = [];
-  routes.some((route) => {
-    const match = matchPath(req.path, route);
-    if (match) promises.push(route);
-    return match;
-  });
-  console.log("promises", promises);
-
-  // Promise.all(promises).then((data) => {
-  //   // do something w/ the data so the client
-  //   // can access it then render the app
-  // });
-
   const store = getStore();
+  const matchedRoutes = matchRoutes(routes, req.path);
+  matchedRoutes.forEach((item) => {
+    if (item.route.loadData) {
+      item.route.loadData(store);
+    }
+  });
+
+  console.log("get state", store.getState());
+
   // server端不同于浏览器，无法获取到url的变化，只能通过传入url的方式获取url
   const content = ReactDOMServer.renderToString(
     <Provider store={store}>
       <Router location={req.url}>
         <Switch>
-          {routes.map((item) => {
-            return <Route {...item} />;
-          })}
+          {routes.map((route) => (
+            <Route {...route} />
+          ))}
         </Switch>
       </Router>
     </Provider>

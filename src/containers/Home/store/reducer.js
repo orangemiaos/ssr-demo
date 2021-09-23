@@ -10,7 +10,7 @@ export default function (state = defaultState, action) {
     case GET_HOME_LIST:
       return {
         ...state,
-        list: action.list,
+        newList: action.list,
       };
     default:
       return state;

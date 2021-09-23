@@ -10,26 +10,33 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "routes": () => (/* binding */ routes)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _containers_Home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./containers/Home */ "./src/containers/Home/index.js");
-/* harmony import */ var _containers_Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./containers/Login */ "./src/containers/Login.js");
+/* harmony import */ var _containers_Home__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./containers/Home */ "./src/containers/Home/index.js");
+/* harmony import */ var _containers_Login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./containers/Login */ "./src/containers/Login.js");
+/* harmony import */ var _containers_Test__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./containers/Test */ "./src/containers/Test.js");
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
+var routes = [{
   path: "/",
-  component: _containers_Home__WEBPACK_IMPORTED_MODULE_1__["default"],
-  exact: true,
+  component: _containers_Home__WEBPACK_IMPORTED_MODULE_0__["default"],
+  // exact: true,
   key: "home",
-  loadData: _containers_Home__WEBPACK_IMPORTED_MODULE_1__["default"].loadData
+  loadData: _containers_Home__WEBPACK_IMPORTED_MODULE_0__["default"].loadData,
+  routes: [{
+    path: "/test",
+    component: _containers_Test__WEBPACK_IMPORTED_MODULE_2__["default"],
+    // exact: true,
+    key: "test"
+  }]
 }, {
   path: "/login",
-  component: _containers_Login__WEBPACK_IMPORTED_MODULE_2__["default"],
+  component: _containers_Login__WEBPACK_IMPORTED_MODULE_1__["default"],
   exact: true,
   key: "login"
-}]);
+}];
+
 
 /***/ }),
 
@@ -134,8 +141,8 @@ var Home = /*#__PURE__*/function (_Component) {
   return Home;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-Home.loadData = function () {
-  console.log("get some data");
+Home.loadData = function (store) {
+  return store.dispatch(_store_actions__WEBPACK_IMPORTED_MODULE_3__.getHomeList);
 };
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -248,7 +255,7 @@ var defaultState = {
   switch (action.type) {
     case _constants__WEBPACK_IMPORTED_MODULE_0__.GET_HOME_LIST:
       return _objectSpread(_objectSpread({}, state), {}, {
-        list: action.list
+        newList: action.list
       });
 
     default:
@@ -282,6 +289,25 @@ var Login = function Login() {
 
 /***/ }),
 
+/***/ "./src/containers/Test.js":
+/*!********************************!*\
+  !*** ./src/containers/Test.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function () {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Test");
+});
+
+/***/ }),
+
 /***/ "./src/redux/store.js":
 /*!****************************!*\
   !*** ./src/redux/store.js ***!
@@ -293,8 +319,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _containers_Home_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../containers/Home/store */ "./src/containers/Home/store/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
+/* harmony import */ var _containers_Home_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../containers/Home/store */ "./src/containers/Home/store/index.js");
+
 
 
 
@@ -320,14 +348,14 @@ function countReducer() {
   }
 }
 
-var reducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
-  home: _containers_Home_store__WEBPACK_IMPORTED_MODULE_0__.reducer,
+var reducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+  home: _containers_Home_store__WEBPACK_IMPORTED_MODULE_1__.reducer,
   count: countReducer
 });
 
 var getStore = function getStore() {
   // 所有用户共享一个store
-  return (0,redux__WEBPACK_IMPORTED_MODULE_1__.createStore)(reducer);
+  return (0,redux__WEBPACK_IMPORTED_MODULE_2__.createStore)(reducer, (0,redux__WEBPACK_IMPORTED_MODULE_2__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_0__["default"]));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getStore);
@@ -34691,6 +34719,40 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/redux-thunk/es/index.js":
+/*!**********************************************!*\
+  !*** ./node_modules/redux-thunk/es/index.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function createThunkMiddleware(extraArgument) {
+  return function (_ref) {
+    var dispatch = _ref.dispatch,
+        getState = _ref.getState;
+    return function (next) {
+      return function (action) {
+        if (typeof action === 'function') {
+          return action(dispatch, getState, extraArgument);
+        }
+
+        return next(action);
+      };
+    };
+  };
+}
+
+var thunk = createThunkMiddleware();
+thunk.withExtraArgument = createThunkMiddleware;
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (thunk);
+
+/***/ }),
+
 /***/ "./node_modules/redux/es/redux.js":
 /*!****************************************!*\
   !*** ./node_modules/redux/es/redux.js ***!
@@ -36934,8 +36996,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Switch, null, _Routes__WEBPACK_IMPORTED_MODULE_4__["default"].map(function (item) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, item);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Switch, null, _Routes__WEBPACK_IMPORTED_MODULE_4__.routes.map(function (route) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, route);
   })));
 }; // hydrate与render相同，用在ReactDOMServer渲染时，绑定事件监听器
 

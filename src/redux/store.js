@@ -1,4 +1,6 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, applyMiddleware, combineReducers } from "redux";
+import thunk from "redux-thunk";
+
 import { reducer as homeReducer } from "../containers/Home/store";
 
 function countReducer(state = { value: 0 }, action) {
@@ -19,7 +21,7 @@ const reducer = combineReducers({
 
 const getStore = function () {
   // 所有用户共享一个store
-  return createStore(reducer);
+  return createStore(reducer, applyMiddleware(thunk));
 };
 
 export default getStore;

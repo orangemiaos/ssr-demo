@@ -10,6 +10,7 @@ app.use(express.static("public"));
 
 // * 可匹配所有文件，否则只可以匹配/
 app.get("*", (req, res) => {
+  // 将icon放到public文件下，减少一次匹配
   res.send(render(req));
 });
 

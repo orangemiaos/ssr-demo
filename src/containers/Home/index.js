@@ -12,13 +12,13 @@ class Home extends Component {
   render() {
     const { name, list } = this.props;
     return (
-      <Fragment>
+      <div>
         <Header />
         <span>hello react! ，{name}</span>
         <ul>
           {list && list.map((item) => <li key={item.id}>{item.name}</li>)}
         </ul>
-      </Fragment>
+      </div>
     );
   }
 }

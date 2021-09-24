@@ -9,7 +9,7 @@ const clientConfig = {
     path: path.resolve(__dirname, "public"),
     filename: "index.js",
   },
-  devtool: "source-map",
+  devtool: "eval-cheap-source-map",
 };
 
 module.exports = merge(baseConfig, clientConfig);

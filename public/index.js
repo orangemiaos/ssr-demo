@@ -142,7 +142,7 @@ var Home = /*#__PURE__*/function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 Home.loadData = function (store) {
-  return store.dispatch(_store_actions__WEBPACK_IMPORTED_MODULE_3__.getHomeList);
+  store.dispatch((0,_store_actions__WEBPACK_IMPORTED_MODULE_3__.getHomeList)());
 };
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -155,7 +155,7 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     getHomeList: function getHomeList() {
-      dispatch(_store_actions__WEBPACK_IMPORTED_MODULE_3__.getHomeList);
+      dispatch((0,_store_actions__WEBPACK_IMPORTED_MODULE_3__.getHomeList)());
     }
   };
 };
@@ -176,19 +176,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getHomeList": () => (/* binding */ getHomeList)
 /* harmony export */ });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constants */ "./src/containers/Home/store/constants.js");
+ // 同步action返回的是一个对象，异步action返回的是一个函数
+// export const getHomeList = () => ({
+//   type: GET_HOME_LIST,
+//   list: [
+//     { id: 1, name: "我是1" },
+//     { id: 2, name: "我是2" },
+//     { id: 3, name: "我是3" },
+//   ],
+// });
 
-var getHomeList = {
-  type: _constants__WEBPACK_IMPORTED_MODULE_0__.GET_HOME_LIST,
-  list: [{
-    id: 1,
-    name: "我是1"
-  }, {
-    id: 2,
-    name: "我是2"
-  }, {
-    id: 3,
-    name: "我是3"
-  }]
+var getHomeList = function getHomeList() {
+  return function (dispatch) {
+    setTimeout(function () {
+      dispatch({
+        type: _constants__WEBPACK_IMPORTED_MODULE_0__.GET_HOME_LIST,
+        list: [{
+          id: 1,
+          name: "我是1"
+        }, {
+          id: 2,
+          name: "我是2"
+        }, {
+          id: 3,
+          name: "我是3"
+        }]
+      });
+    }, 1000);
+  };
 };
 
 /***/ }),

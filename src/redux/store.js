@@ -19,9 +19,13 @@ const reducer = combineReducers({
   count: countReducer,
 });
 
-const getStore = function () {
+export const getStore = function () {
   // 所有用户共享一个store
   return createStore(reducer, applyMiddleware(thunk));
 };
 
-export default getStore;
+export const getClientStore = function () {
+  // 所有用户共享一个store
+  let defaultState = window.context.state;
+  return createStore(reducer, defaultState, applyMiddleware(thunk));
+};

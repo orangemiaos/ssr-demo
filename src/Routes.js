@@ -6,7 +6,7 @@ const routes = [
   {
     path: "/",
     component: Home,
-    // exact: true,
+    exact: true,
     key: "home",
     loadData: Home.loadData,
     routes: [

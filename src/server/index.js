@@ -2,7 +2,7 @@ import express from "express";
 // react-router-dom 中的 matchPath，只能匹配一级路由，路由内再次嵌套一个route，则匹配不出来，需要使用
 import { matchRoutes } from "react-router-config";
 
-import getStore from "../redux/store";
+import { getStore } from "../redux/store";
 import { render } from "./utils";
 import { routes } from "../Routes";
 
@@ -16,7 +16,6 @@ app.use(express.static("public"));
 app.get("*", (req, res) => {
   const store = getStore();
   const matchedRoutes = matchRoutes(routes, req.path);
-
   let promises = [];
   matchedRoutes.forEach((item) => {
     if (item.route.loadData) {

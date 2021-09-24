@@ -14,6 +14,7 @@ export const getHomeList = () => {
   return (dispatch) => {
     // 返回一个promise
     return new Promise((resolve) => {
+      console.log("发送数据请求");
       setTimeout(() => {
         dispatch({
           type: GET_HOME_LIST,

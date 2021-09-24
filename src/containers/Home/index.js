@@ -6,7 +6,10 @@ import { getHomeList } from "./store/actions";
 class Home extends Component {
   // 服务端渲染是不执行，所以服务端渲染时，list为undefined
   componentDidMount() {
-    this.props.getHomeList();
+    // 防止重复请求
+    if (!this.props.list.length) {
+      this.props.getHomeList();
+    }
   }
 
   render() {

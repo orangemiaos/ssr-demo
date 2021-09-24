@@ -1,8 +1,8 @@
 import { GET_HOME_LIST } from "./constants";
 
 const defaultState = {
-  newList: [],
   name: "我是name Lee",
+  list: [],
 };
 
 export default function (state = defaultState, action) {
@@ -10,7 +10,7 @@ export default function (state = defaultState, action) {
     case GET_HOME_LIST:
       return {
         ...state,
-        newList: action.list,
+        list: action.list,
       };
     default:
       return state;

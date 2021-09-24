@@ -142,7 +142,7 @@ var Home = /*#__PURE__*/function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 Home.loadData = function (store) {
-  store.dispatch((0,_store_actions__WEBPACK_IMPORTED_MODULE_3__.getHomeList)());
+  return store.dispatch((0,_store_actions__WEBPACK_IMPORTED_MODULE_3__.getHomeList)());
 };
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -188,21 +188,25 @@ __webpack_require__.r(__webpack_exports__);
 
 var getHomeList = function getHomeList() {
   return function (dispatch) {
-    setTimeout(function () {
-      dispatch({
-        type: _constants__WEBPACK_IMPORTED_MODULE_0__.GET_HOME_LIST,
-        list: [{
-          id: 1,
-          name: "我是1"
-        }, {
-          id: 2,
-          name: "我是2"
-        }, {
-          id: 3,
-          name: "我是3"
-        }]
-      });
-    }, 1000);
+    // 返回一个promise
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        dispatch({
+          type: _constants__WEBPACK_IMPORTED_MODULE_0__.GET_HOME_LIST,
+          list: [{
+            id: 1,
+            name: "我是1"
+          }, {
+            id: 2,
+            name: "我是2"
+          }, {
+            id: 3,
+            name: "我是3"
+          }]
+        });
+        resolve();
+      }, 1000);
+    });
   };
 };
 
@@ -260,8 +264,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 var defaultState = {
-  newList: [],
-  name: "我是name Lee"
+  name: "我是name Lee",
+  list: []
 };
 /* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
@@ -270,7 +274,7 @@ var defaultState = {
   switch (action.type) {
     case _constants__WEBPACK_IMPORTED_MODULE_0__.GET_HOME_LIST:
       return _objectSpread(_objectSpread({}, state), {}, {
-        newList: action.list
+        list: action.list
       });
 
     default:

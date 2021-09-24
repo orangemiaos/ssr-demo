@@ -13,36 +13,40 @@ import { Provider } from "react-redux";
 import getStore from "../redux/store";
 import { routes } from "../Routes";
 
-export const render = (req) => {
+export const render = (req, res) => {
   const store = getStore();
   const matchedRoutes = matchRoutes(routes, req.path);
+
+  let promises = [];
   matchedRoutes.forEach((item) => {
     if (item.route.loadData) {
-      item.route.loadData(store);
+      promises.push(item.route.loadData(store));
     }
   });
 
-  console.log("get state", store.getState());
+  Promise.all(promises).then(() => {
+ 
 
-  // server端不同于浏览器，无法获取到url的变化，只能通过传入url的方式获取url
-  const content = ReactDOMServer.renderToString(
-    <Provider store={store}>
-      <Router location={req.url}>
-        <Switch>
-          {routes.map((route) => (
-            <Route {...route} />
-          ))}
-        </Switch>
-      </Router>
-    </Provider>
-  );
+    // server端不同于浏览器，无法获取到url的变化，只能通过传入url的方式获取url
+    const content = ReactDOMServer.renderToString(
+      <Provider store={store}>
+        <Router location={req.url}>
+          <Switch>
+            {routes.map((route) => (
+              <Route {...route} />
+            ))}
+          </Switch>
+        </Router>
+      </Provider>
+    );
 
-  return `
+    res.send(`
     <html>
       <body>
       <div id='root'>${content}</div>
       <script src='/index.js'></script>
       </body>  
     <html>
-    `;
+    `);
+  });
 };

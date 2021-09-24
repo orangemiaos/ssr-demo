@@ -12,15 +12,19 @@ import { GET_HOME_LIST } from "./constants";
 
 export const getHomeList = () => {
   return (dispatch) => {
-    setTimeout(() => {
-      dispatch({
-        type: GET_HOME_LIST,
-        list: [
-          { id: 1, name: "我是1" },
-          { id: 2, name: "我是2" },
-          { id: 3, name: "我是3" },
-        ],
-      });
-    }, 1000);
+    // 返回一个promise
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        dispatch({
+          type: GET_HOME_LIST,
+          list: [
+            { id: 1, name: "我是1" },
+            { id: 2, name: "我是2" },
+            { id: 3, name: "我是3" },
+          ],
+        });
+        resolve();
+      }, 1000);
+    });
   };
 };

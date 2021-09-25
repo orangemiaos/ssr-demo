@@ -13,19 +13,30 @@ const port = 3000;
 app.use(express.static("public"));
 
 // * 可匹配所有文件，否则只可以匹配/
+
+app.get("/pageList", (req, res) => {
+  res.send(
+    JSON.stringify([
+      { id: 1, name: "我是1" },
+      { id: 2, name: "我是2" },
+      { id: 3, name: "我是3" },
+    ])
+  );
+});
+
 app.get("*", (req, res) => {
   const store = getStore();
-  const matchedRoutes = matchRoutes(routes, req.path);
-  let promises = [];
-  matchedRoutes.forEach((item) => {
-    if (item.route.loadData) {
-      promises.push(item.route.loadData(store));
-    }
-  });
+  // const matchedRoutes = matchRoutes(routes, req.path);
+  // let promises = [];
+  // matchedRoutes.forEach((item) => {
+  //   if (item.route.loadData) {
+  //     promises.push(item.route.loadData(store));
+  //   }
+  // });
 
-  Promise.all(promises).then(() => {
-    res.send(render(store, routes, req));
-  });
+  // Promise.all(promises).then(() => {
+  res.send(render(store, routes, req));
+  // });
 
   // 将icon放到public文件下，减少一次匹配
 });

@@ -20,7 +20,7 @@ const changeList = (list) => {
 
 export const getHomeList = () => {
   return (dispatch) => {
-    return axios.get("http://172.18.65.1:9000/api/list").then((res) => {
+    return axios.get("/api/getHomeList").then((res) => {
       console.log("发送数据请求", res);
       // 处理成功情况
       if (res.status === 200) {

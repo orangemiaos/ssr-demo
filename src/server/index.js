@@ -1,6 +1,7 @@
 import express from "express";
 // react-router-dom 中的 matchPath，只能匹配一级路由，路由内再次嵌套一个route，则匹配不出来，需要使用
 import { matchRoutes } from "react-router-config";
+import proxy from "express-http-proxy";
 
 import { getStore } from "../redux/store";
 import { render } from "./utils";
@@ -11,6 +12,17 @@ const port = 3000;
 
 // 将静态文件存储在public文件夹上，每当有静态资源的请求时，去public文件夹中找
 app.use(express.static("public"));
+
+// http://192.168.31.6:9000/api/list
+app.use(
+  "/api",
+  proxy("http://192.168.31.6:9000", {
+    proxyReqPathResolver: function (req) {
+      return "/api/list";
+      // console.log(req.url);
+    },
+  })
+);
 
 // * 可匹配所有文件，否则只可以匹配/
 app.get("*", (req, res) => {

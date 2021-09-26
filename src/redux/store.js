@@ -2,21 +2,11 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import { clientAxios, serverAxios } from "../https";
 import { reducer as homeReducer } from "../containers/Home/store";
-
-function countReducer(state = { value: 0 }, action) {
-  switch (action.type) {
-    case "increment":
-      return { value: state.value + 1 };
-    case "decrement":
-      return { value: state.value - 1 };
-    default:
-      return state;
-  }
-}
+import { reducer as headerReducer } from "../components/Header/store";
 
 const reducer = combineReducers({
   home: homeReducer,
-  count: countReducer,
+  header: headerReducer,
 });
 
 export const getStore = function () {

@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
-
+import { clientAxios, serverAxios } from "../https";
 import { reducer as homeReducer } from "../containers/Home/store";
 
 function countReducer(state = { value: 0 }, action) {
@@ -21,11 +21,18 @@ const reducer = combineReducers({
 
 export const getStore = function () {
   // 所有用户共享一个store
-  return createStore(reducer, applyMiddleware(thunk));
+  return createStore(
+    reducer,
+    applyMiddleware(thunk.withExtraArgument(serverAxios))
+  );
 };
 
 export const getClientStore = function () {
   // 所有用户共享一个store
   let defaultState = window.context.state;
-  return createStore(reducer, defaultState, applyMiddleware(thunk));
+  return createStore(
+    reducer,
+    defaultState,
+    applyMiddleware(thunk.withExtraArgument(clientAxios))
+  );
 };

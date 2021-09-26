@@ -1,5 +1,4 @@
 import { GET_HOME_LIST } from "./constants";
-import axios from "axios";
 
 // 同步action返回的是一个对象，异步action返回的是一个函数
 // export const getHomeList = () => ({
@@ -18,21 +17,21 @@ const changeList = (list) => {
   };
 };
 
-export const getHomeList = (server) => {
+export const getHomeList = () => {
   // 浏览器
   // /api/getHomeList => http://localhost:3000/api/getHomeList
 
   // server
   // /api/getHomeList => 服务器根目录下的/api/getHomeList.js
 
-  let url = "";
-  if (server) {
-    url = "http://192.168.31.6:9000/api/list";
-  } else {
-    url = "/api/getHomeList";
-  }
-  return (dispatch) => {
-    return axios.get(url).then((res) => {
+  // let url = "";
+  // if (server) {
+  //   url = "http://192.168.31.6:9000/api/list";
+  // } else {
+  //   url = "/api/list";
+  // }
+  return (dispatch, getState, axios) => {
+    return axios.get("/api/list").then((res) => {
       // 处理成功情况
       if (res.status === 200) {
         dispatch(changeList(res.data));

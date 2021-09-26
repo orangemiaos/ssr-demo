@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import Header from "../../components/Header";
 import { getHomeList } from "./store/actions";
 
 class Home extends Component {
@@ -16,7 +15,6 @@ class Home extends Component {
     const { name, list } = this.props;
     return (
       <div>
-        <Header />
         <span>hello react! ，{name}</span>
         <ul>
           {list && list.map((item) => <li key={item.id}>{item.name}</li>)}

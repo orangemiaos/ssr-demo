@@ -6,7 +6,7 @@ import {
   Route,
   // matchPath,
 } from "react-router-dom";
-
+import { renderRoutes } from "react-router-config";
 import { Provider } from "react-redux";
 
 export const render = (store, routes, req) => {
@@ -15,9 +15,10 @@ export const render = (store, routes, req) => {
     <Provider store={store}>
       <Router location={req.url}>
         <Switch>
-          {routes.map((route) => (
+          {renderRoutes(routes)}
+          {/* {routes.map((route) => (
             <Route {...route} />
-          ))}
+          ))} */}
         </Switch>
       </Router>
     </Provider>

@@ -18,10 +18,21 @@ const changeList = (list) => {
   };
 };
 
-export const getHomeList = () => {
+export const getHomeList = (server) => {
+  // 浏览器
+  // /api/getHomeList => http://localhost:3000/api/getHomeList
+
+  // server
+  // /api/getHomeList => 服务器根目录下的/api/getHomeList.js
+
+  let url = "";
+  if (server) {
+    url = "http://192.168.31.6:9000/api/list";
+  } else {
+    url = "/api/getHomeList";
+  }
   return (dispatch) => {
-    return axios.get("/api/getHomeList").then((res) => {
-      console.log("发送数据请求", res);
+    return axios.get(url).then((res) => {
       // 处理成功情况
       if (res.status === 200) {
         dispatch(changeList(res.data));

@@ -13,17 +13,6 @@ const port = 3000;
 app.use(express.static("public"));
 
 // * 可匹配所有文件，否则只可以匹配/
-
-app.get("/pageList", (req, res) => {
-  res.send(
-    JSON.stringify([
-      { id: 1, name: "我是1" },
-      { id: 2, name: "我是2" },
-      { id: 3, name: "我是3" },
-    ])
-  );
-});
-
 app.get("*", (req, res) => {
   const store = getStore();
   // const matchedRoutes = matchRoutes(routes, req.path);

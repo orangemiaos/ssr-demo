@@ -14,12 +14,13 @@ const port = 3000;
 app.use(express.static("public"));
 
 // http://192.168.31.6:9000/api/list
+
+// 浏览器路由命中
 app.use(
   "/api",
   proxy("http://192.168.31.6:9000", {
     proxyReqPathResolver: function (req) {
-      return "/api/list";
-      // console.log(req.url);
+      return "/api" + req.url;
     },
   })
 );

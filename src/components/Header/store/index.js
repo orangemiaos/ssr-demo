@@ -1,2 +1,4 @@
 import reducer from "./reducer";
-export { reducer };
+import actions from "./actions";
+
+export { reducer, actions };

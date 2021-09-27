@@ -356,7 +356,7 @@ eval("\n\nvar bind = __webpack_require__(/*! ./helpers/bind */ \"./node_modules/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react_router_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-config */ \"./node_modules/react-router-config/esm/react-router-config.js\");\n/* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Header */ \"./src/components/Header/index.js\");\n\n\n\n/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(props) {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Header__WEBPACK_IMPORTED_MODULE_1__[\"default\"], null), (0,react_router_config__WEBPACK_IMPORTED_MODULE_2__.renderRoutes)(props.route.routes));\n}\n\n//# sourceURL=webpack://ssr_demo/./src/App.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react_router_config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-config */ \"./node_modules/react-router-config/esm/react-router-config.js\");\n/* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Header */ \"./src/components/Header/index.js\");\n/* harmony import */ var _components_Header_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Header/store */ \"./src/components/Header/store/index.js\");\n\n\n\n\n\nvar App = function App(props) {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Header__WEBPACK_IMPORTED_MODULE_1__[\"default\"], null), (0,react_router_config__WEBPACK_IMPORTED_MODULE_3__.renderRoutes)(props.route.routes));\n};\n\nApp.loadData = function (store) {\n  return store.dispatch(_components_Header_store__WEBPACK_IMPORTED_MODULE_2__.actions.getLoginInfo());\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);\n\n//# sourceURL=webpack://ssr_demo/./src/App.js?");
 
 /***/ }),
 
@@ -367,7 +367,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"routes\": () => (/* binding */ routes)\n/* harmony export */ });\n/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App */ \"./src/App.js\");\n/* harmony import */ var _containers_Home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./containers/Home */ \"./src/containers/Home/index.js\");\n/* harmony import */ var _containers_Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./containers/Login */ \"./src/containers/Login.js\");\n/* harmony import */ var _containers_Test__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./containers/Test */ \"./src/containers/Test.js\");\n\n\n\n\nvar routes = [{\n  path: \"/\",\n  component: _App__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n  key: \"app\",\n  routes: [{\n    path: \"/login\",\n    component: _containers_Login__WEBPACK_IMPORTED_MODULE_2__[\"default\"],\n    exact: true,\n    key: \"login\"\n  }, {\n    path: \"/home\",\n    component: _containers_Home__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n    exact: true,\n    loadData: _containers_Home__WEBPACK_IMPORTED_MODULE_1__[\"default\"].loadData,\n    key: \"home\"\n  }, {\n    path: \"/test\",\n    component: _containers_Test__WEBPACK_IMPORTED_MODULE_3__[\"default\"],\n    exact: true,\n    key: \"test\"\n  }]\n}];\n\n\n//# sourceURL=webpack://ssr_demo/./src/Routes.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"routes\": () => (/* binding */ routes)\n/* harmony export */ });\n/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App */ \"./src/App.js\");\n/* harmony import */ var _containers_Home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./containers/Home */ \"./src/containers/Home/index.js\");\n/* harmony import */ var _containers_Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./containers/Login */ \"./src/containers/Login.js\");\n/* harmony import */ var _containers_Test__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./containers/Test */ \"./src/containers/Test.js\");\n\n\n\n\nvar routes = [{\n  path: \"/\",\n  component: _App__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n  loadData: _App__WEBPACK_IMPORTED_MODULE_0__[\"default\"].loadData,\n  key: \"app\",\n  routes: [{\n    path: \"/login\",\n    component: _containers_Login__WEBPACK_IMPORTED_MODULE_2__[\"default\"],\n    exact: true,\n    loadData: _containers_Login__WEBPACK_IMPORTED_MODULE_2__[\"default\"].loadData,\n    key: \"login\"\n  }, {\n    path: \"/home\",\n    component: _containers_Home__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n    exact: true,\n    loadData: _containers_Home__WEBPACK_IMPORTED_MODULE_1__[\"default\"].loadData,\n    key: \"home\"\n  }, {\n    path: \"/test\",\n    component: _containers_Test__WEBPACK_IMPORTED_MODULE_3__[\"default\"],\n    exact: true,\n    key: \"test\"\n  }]\n}];\n\n\n//# sourceURL=webpack://ssr_demo/./src/Routes.js?");
 
 /***/ }),
 
@@ -382,6 +382,28 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/components/Header/store/actions.js":
+/*!************************************************!*\
+  !*** ./src/components/Header/store/actions.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constants */ \"./src/components/Header/store/constants.js\");\n\n\nvar changeLogin = function changeLogin(value) {\n  return {\n    type: _constants__WEBPACK_IMPORTED_MODULE_0__.CHANGE_LOGIN,\n    value: value\n  };\n};\n\nvar getLoginInfo = function getLoginInfo() {\n  return function (dispatch, getState, axios) {\n    return axios.get(\"/api/login\").then(function (res) {\n      dispatch(changeLogin(res.data));\n    });\n  };\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({\n  getLoginInfo: getLoginInfo\n});\n\n//# sourceURL=webpack://ssr_demo/./src/components/Header/store/actions.js?");
+
+/***/ }),
+
+/***/ "./src/components/Header/store/constants.js":
+/*!**************************************************!*\
+  !*** ./src/components/Header/store/constants.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"CHANGE_LOGIN\": () => (/* binding */ CHANGE_LOGIN)\n/* harmony export */ });\nvar CHANGE_LOGIN = \"HEADE/CHANGELOGIN\";\n\n//# sourceURL=webpack://ssr_demo/./src/components/Header/store/constants.js?");
+
+/***/ }),
+
 /***/ "./src/components/Header/store/index.js":
 /*!**********************************************!*\
   !*** ./src/components/Header/store/index.js ***!
@@ -389,7 +411,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"reducer\": () => (/* reexport safe */ _reducer__WEBPACK_IMPORTED_MODULE_0__[\"default\"])\n/* harmony export */ });\n/* harmony import */ var _reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./reducer */ \"./src/components/Header/store/reducer.js\");\n\n\n\n//# sourceURL=webpack://ssr_demo/./src/components/Header/store/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"reducer\": () => (/* reexport safe */ _reducer__WEBPACK_IMPORTED_MODULE_0__[\"default\"]),\n/* harmony export */   \"actions\": () => (/* reexport safe */ _actions__WEBPACK_IMPORTED_MODULE_1__[\"default\"])\n/* harmony export */ });\n/* harmony import */ var _reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./reducer */ \"./src/components/Header/store/reducer.js\");\n/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions */ \"./src/components/Header/store/actions.js\");\n\n\n\n\n//# sourceURL=webpack://ssr_demo/./src/components/Header/store/index.js?");
 
 /***/ }),
 
@@ -400,7 +422,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar defaultState = {\n  login: false\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function () {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;\n  var action = arguments.length > 1 ? arguments[1] : undefined;\n\n  switch (action.type) {\n    default:\n      return state;\n  }\n});\n\n//# sourceURL=webpack://ssr_demo/./src/components/Header/store/reducer.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constants */ \"./src/components/Header/store/constants.js\");\nfunction ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }\n\nfunction _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\n\nvar defaultState = {\n  login: true\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function () {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;\n  var action = arguments.length > 1 ? arguments[1] : undefined;\n\n  switch (action.type) {\n    case _constants__WEBPACK_IMPORTED_MODULE_0__.CHANGE_LOGIN:\n      return _objectSpread(_objectSpread({}, state), {}, {\n        login: action.value\n      });\n\n    default:\n      return state;\n  }\n});\n\n//# sourceURL=webpack://ssr_demo/./src/components/Header/store/reducer.js?");
 
 /***/ }),
 

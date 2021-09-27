@@ -7,9 +7,16 @@ const routes = [
   {
     path: "/",
     component: App,
+    loadData: App.loadData,
     key: "app",
     routes: [
-      { path: "/login", component: Login, exact: true, key: "login" },
+      {
+        path: "/login",
+        component: Login,
+        exact: true,
+        loadData: Login.loadData,
+        key: "login",
+      },
       {
         path: "/home",
         component: Home,

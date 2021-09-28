@@ -1,6 +1,5 @@
 import App from "./App";
-import Home from "./containers/Home";
-import Login from "./containers/Login";
+import List from "./containers/List";
 import Test from "./containers/Test";
 
 const routes = [
@@ -11,18 +10,11 @@ const routes = [
     key: "app",
     routes: [
       {
-        path: "/login",
-        component: Login,
+        path: "/list",
+        component: List,
         exact: true,
-        loadData: Login.loadData,
-        key: "login",
-      },
-      {
-        path: "/home",
-        component: Home,
-        exact: true,
-        loadData: Home.loadData,
-        key: "home",
+        loadData: List.loadData,
+        key: "list",
       },
       { path: "/test", component: Test, exact: true, key: "test" },
     ],

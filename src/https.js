@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { ip } from "./utils/ip";
 export const clientAxios = axios.create({
   baseURL: "/",
   timeout: 1000,
@@ -7,7 +7,7 @@ export const clientAxios = axios.create({
 });
 
 export const serverAxios = axios.create({
-  baseURL: "http://192.168.31.6:9000",
+  baseURL: `http://${ip}:9000"`,
   timeout: 1000,
   headers: { "X-Custom-Header": "foobar" },
 });

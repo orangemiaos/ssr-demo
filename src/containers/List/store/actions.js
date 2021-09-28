@@ -17,19 +17,13 @@ const changeList = (list) => {
   };
 };
 
-export const getHomeList = () => {
+export const getList = () => {
   // 浏览器
   // /api/getHomeList => http://localhost:3000/api/getHomeList
 
   // server
   // /api/getHomeList => 服务器根目录下的/api/getHomeList.js
 
-  // let url = "";
-  // if (server) {
-  //   url = "http://192.168.31.6:9000/api/list";
-  // } else {
-  //   url = "/api/list";
-  // }
   return (dispatch, getState, axios) => {
     return axios.get("/api/list").then((res) => {
       // 处理成功情况

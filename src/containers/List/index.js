@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { getHomeList } from "./store/actions";
+import { Redirect } from "react-router-dom"; // 限于客户端重定向
+import { getList } from "./store/actions";
 
-class Home extends Component {
+class List extends Component {
   // 服务端渲染是不执行，所以服务端渲染时，list为undefined
   componentDidMount() {
     // 防止重复请求
@@ -12,31 +13,34 @@ class Home extends Component {
   }
 
   render() {
-    const { name, list } = this.props;
-    return (
+    const { name, list, login } = this.props;
+    return login ? (
       <div>
         <span>hello react! ，{name}</span>
         <ul>
           {list && list.map((item) => <li key={item.id}>{item.name}</li>)}
         </ul>
       </div>
+    ) : (
+      <Redirect to="/" />
     );
   }
 }
 
-Home.loadData = (store) => {
-  return store.dispatch(getHomeList());
+List.loadData = (store) => {
+  return store.dispatch(getList());
 };
 
 const mapStateToProps = (state) => ({
   name: state.home.name,
   list: state.home.list,
+  login: state.header.login,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getHomeList: () => {
-    dispatch(getHomeList());
+    dispatch(getList());
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(List);

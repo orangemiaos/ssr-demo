@@ -4,10 +4,16 @@ export const clientAxios = axios.create({
   baseURL: "/",
   timeout: 1000,
   headers: { "X-Custom-Header": "foobar" },
+  params: {
+    random: Math.random(),
+  },
 });
 
 export const serverAxios = axios.create({
   baseURL: `http://${ip}:9000`,
   timeout: 1000,
   headers: { "X-Custom-Header": "foobar" },
+  params: {
+    random: Math.random(),
+  },
 });

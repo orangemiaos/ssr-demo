@@ -8,7 +8,7 @@ const changeLogin = (value) => ({
 const getLoginInfo = () => {
   return (dispatch, getState, axios) => {
     return axios.get("/api/login").then((res) => {
-      dispatch(changeLogin(res.data));
+      dispatch(changeLogin(res.data.login));
     });
   };
 };

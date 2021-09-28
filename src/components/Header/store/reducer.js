@@ -1,7 +1,7 @@
 import { CHANGE_LOGIN } from "./constants";
 
 const defaultState = {
-  login: true,
+  login: false,
 };
 
 export default (state = defaultState, action) => {

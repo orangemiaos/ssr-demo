@@ -1,6 +1,7 @@
 import App from "./App";
 import List from "./containers/List";
 import Test from "./containers/Test";
+import NotFound from "./containers/NotFound";
 
 const routes = [
   {
@@ -17,6 +18,7 @@ const routes = [
         key: "list",
       },
       { path: "/test", component: Test, exact: true, key: "test" },
+      { component: NotFound },
     ],
   },
 ];

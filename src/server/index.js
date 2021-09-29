@@ -4,7 +4,7 @@ import { matchRoutes } from "react-router-config";
 import proxy from "express-http-proxy";
 
 import { getStore } from "../redux/store";
-import { render } from "./utils";
+import { render, render404 } from "./utils";
 import { routes } from "../Routes";
 import { ip } from "../utils/ip";
 
@@ -25,6 +25,10 @@ app.use(
     },
   })
 );
+
+app.use(function (req, res, next) {
+  res.status(404).send("Sorry can't find that!");
+});
 
 // * 可匹配所有文件，否则只可以匹配/
 app.get("*", (req, res) => {
